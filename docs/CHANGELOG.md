@@ -2,6 +2,17 @@
 
 
 
+## v0.2.1 (2025-01-15)
+
+### Documentation
+
+* docs(readme): list alternatives ([`4f026d4`](https://github.com/MicaelJarniac/poetry-codeartifact/commit/4f026d4305fbb63048e091f616801b5f46a4cc9b))
+
+### Fix
+
+* fix: setup ([`a44fbec`](https://github.com/MicaelJarniac/poetry-codeartifact/commit/a44fbec212b708583e0166b8f6e839ca61be3fd4))
+
+
 ## v0.2.0 (2025-01-15)
 
 ### Feature
