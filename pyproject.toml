@@ -29,7 +29,7 @@ poetry-codeartifact = "poetry_codeartifact.plugin:CodeArtifactPlugin"
 python = "^3.9"
 
 loguru = "^0.7.0"
-poetry = "^1.8.5"
+poetry = "^2.0.1"
 boto3 = "^1.35.85"
 tomli = "^2.2.1"
 
