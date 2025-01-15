@@ -99,6 +99,12 @@ For more examples, see the [full documentation][docs].
 from poetry_codeartifact import poetry_codeartifact
 ```
 
+## Other Alternatives
+- https://github.com/semgrep/poetry-codeartifact-plugin
+- https://github.com/xiasongh/poetry-aws-plugin
+- https://pypi.org/project/poetry-codeartifact-login/
+- https://github.com/lucasvieirasilva/aws-codeartifact-poetry
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
