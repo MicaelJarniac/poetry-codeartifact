@@ -57,19 +57,18 @@ class CodeArtifactCommand(Command):
                 durationSeconds=900,
             )["authorizationToken"]
 
-            url = codeartifact.get_repository_endpoint(
-                domain=domain,
-                domainOwner=domain_owner,
-                repository=repository,
-                format="pypi",
-            )["repositoryEndpoint"]
-
             if self.option("setup"):
                 self.line("Setting up CodeArtifact...")
+                url = codeartifact.get_repository_endpoint(
+                    domain=domain,
+                    domainOwner=domain_owner,
+                    repository=repository,
+                    format="pypi",
+                )["repositoryEndpoint"]
                 self.call("source", f"add {source_name} {urljoin(url, 'simple/')}")
+                self.call("config", f"--local -- repositories.{source_name} {url}")
 
             self.call("config", f"-- http-basic.{source_name} {username} {password}")
-            self.call("config", f"--local -- repositories.{source_name} {url}")
         return 0
 
 
