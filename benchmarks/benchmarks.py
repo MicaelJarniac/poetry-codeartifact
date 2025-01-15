@@ -1,0 +1,1 @@
+"""Benchmarking for poetry-codeartifact."""

@@ -1,0 +1,4 @@
+codeartifact
+Poetry CodeArtifact
+poetry_codeartifact
+poetry-codeartifact
