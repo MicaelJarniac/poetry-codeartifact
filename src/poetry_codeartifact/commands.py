@@ -65,7 +65,7 @@ class CodeArtifactCommand(Command):
                     repository=repository,
                     format="pypi",
                 )["repositoryEndpoint"]
-                self.call("source", f"add {source_name} {urljoin(url, 'simple/')}")
+                self.call("source add", f"{source_name} {urljoin(url, 'simple/')}")
                 self.call("config", f"--local -- repositories.{source_name} {url}")
 
             self.call("config", f"-- http-basic.{source_name} {username} {password}")
