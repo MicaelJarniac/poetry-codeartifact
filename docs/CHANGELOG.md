@@ -2,6 +2,17 @@
 
 
 
+## v0.3.0 (2025-01-16)
+
+### Feature
+
+* feat: settings, logging ([`de44922`](https://github.com/MicaelJarniac/poetry-codeartifact/commit/de4492234811a002a35a092952d42b77d48893ae))
+
+### Unknown
+
+* Merge branch &#39;main&#39; of github.com:MicaelJarniac/poetry-codeartifact ([`2172efd`](https://github.com/MicaelJarniac/poetry-codeartifact/commit/2172efdf4701865343a4a253d33e39f2bb245449))
+
+
 ## v0.2.2 (2025-01-16)
 
 ### Fix

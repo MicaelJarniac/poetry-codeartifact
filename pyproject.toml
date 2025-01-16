@@ -4,7 +4,7 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry]
 name = "poetry-codeartifact"
-version = "0.2.2"
+version = "0.3.0"
 description = "For using AWS CodeArtifact with Poetry."
 authors = ["Micael Jarniac <micael@jarniac.dev>"]
 license = "MIT"
