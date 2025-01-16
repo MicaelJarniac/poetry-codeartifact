@@ -2,6 +2,13 @@
 
 
 
+## v0.2.2 (2025-01-16)
+
+### Fix
+
+* fix: `source add` command ([`56298f6`](https://github.com/MicaelJarniac/poetry-codeartifact/commit/56298f6cd8a10356bdacd8d3401b0d32b83af4d9))
+
+
 ## v0.2.1 (2025-01-15)
 
 ### Documentation
