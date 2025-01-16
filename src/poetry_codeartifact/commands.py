@@ -13,7 +13,10 @@ from urllib.parse import urljoin
 import boto3
 import tomli
 from cleo.helpers import option
+from loguru import logger
 from poetry.console.commands.command import Command
+
+from poetry_codeartifact.settings import load_settings
 
 if TYPE_CHECKING:
     from typing import ClassVar
@@ -37,38 +40,37 @@ class CodeArtifactCommand(Command):
         with self.poetry.pyproject_path.open(mode="rb") as f:
             pyproject = tomli.load(f)
 
-        for source, info in (
-            pyproject.get("tool", {})
-            .get("poetry_codeartifact", {})
-            .get("sources", {})
-            .items()
-        ):
-            source_name = source
-            domain = info["domain"]
-            domain_owner = info["domain_owner"]
-            repository = info["repository"]
-            username = "aws"
+        settings = load_settings(pyproject)
+        username = "aws"
 
-            codeartifact = boto3.client("codeartifact")
+        for name, source in settings.sources.items():
+            logger.debug(f"Processing source {name}...")
+            session = boto3.Session(profile_name=source.profile)
+
+            codeartifact = session.client("codeartifact")
 
             password = codeartifact.get_authorization_token(
-                domain=domain,
-                domainOwner=domain_owner,
-                durationSeconds=900,
+                domain=source.domain,
+                domainOwner=source.domain_owner,
+                durationSeconds=0,
             )["authorizationToken"]
 
             if self.option("setup"):
-                self.line("Setting up CodeArtifact...")
+                self.line(f"Setting up CodeArtifact for source {name}...")
                 url = codeartifact.get_repository_endpoint(
-                    domain=domain,
-                    domainOwner=domain_owner,
-                    repository=repository,
+                    domain=source.domain,
+                    domainOwner=source.domain_owner,
+                    repository=source.repository,
                     format="pypi",
                 )["repositoryEndpoint"]
-                self.call("source add", f"{source_name} {urljoin(url, 'simple/')}")
-                self.call("config", f"--local -- repositories.{source_name} {url}")
+                logger.debug(f"URL: {url}")
+                logger.debug("Adding source...")
+                self.call("source add", f"{name} {urljoin(url, 'simple/')}")
+                logger.debug("Adding config...")
+                self.call("config", f"--local -- repositories.{name} {url}")
 
-            self.call("config", f"-- http-basic.{source_name} {username} {password}")
+            logger.debug("Configuring credentials...")
+            self.call("config", f"-- http-basic.{name} {username} {password}")
         return 0
 
 
